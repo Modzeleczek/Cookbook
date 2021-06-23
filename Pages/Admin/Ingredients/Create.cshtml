@@ -1,0 +1,30 @@
+@page
+@model CreateModel
+@{
+    ViewData["Title"] = "Nowy składnik";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="container">
+    <form class="form-horizontal" method="post">
+        <div class="form-group">
+            <label asp-for="newIngredient.name" class="control-label col-sm-2"></label>
+            <div class="col-sm-6">
+                <input asp-for="newIngredient.name" class="form-control">
+                <span asp-validation-for="newIngredient.name" class="text-red"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="newIngredient.price" class="control-label col-sm-2"></label>
+            <div class="col-sm-6">
+                <input asp-for="newIngredient.price" class="form-control">
+                <span asp-validation-for="newIngredient.price" class="text-red"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <a asp-page="/Ingredients/List" class="btn btn-primary btn-large">Anuluj</a>
+            <button class="btn btn btn-primary">Zatwierdź</button>
+        </div>
+    </form>
+</div>

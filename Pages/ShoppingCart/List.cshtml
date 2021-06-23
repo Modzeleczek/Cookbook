@@ -1,0 +1,41 @@
+@page
+@model ListModel
+@{
+    ViewData["Title"] = "Koszyk";
+}
+
+<h2>@ViewData["Title"]</h2>
+@if(Model.anyDeleted == true)
+{
+    <div class="text-red">Co najmniej 1 produkt z koszyka został usunięty z bazy danych.</div>
+    <br/>
+}
+
+<table class="table table-striped centered">
+    <thead>
+        <tr>
+            <th scope="col">@Html.DisplayNameFor(m => Model.ingredientList.Peek().id)</th>
+            <th scope="col">@Html.DisplayNameFor(m => Model.ingredientList.Peek().name)</th>
+            <th scope="col">@Html.DisplayNameFor(m => Model.ingredientList.Peek().price)</th>
+            <th scope="col">Akcja</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var p in Model.ingredientList)
+        {
+            <tr>
+                <th scope="row">@Html.DisplayFor(m => p.id)</th>
+                <td>@Html.DisplayFor(m => p.name)</td>
+                <td>@Html.DisplayFor(m => p.price)</td>
+                <td>
+                    <a asp-page="/ShoppingCart/Delete" asp-route-id=@p.id>Usuń</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br/>
+
+<form method="post">
+    <button class="btn btn btn-primary">Wyczyść koszyk</button>
+</form>

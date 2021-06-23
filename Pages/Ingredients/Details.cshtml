@@ -1,0 +1,22 @@
+@page
+@model DetailsModel
+@{
+    ViewData["Title"] = "Szczegóły składnika";
+}
+
+<h3>Składnik</h3>
+@Html.DisplayNameFor(m => Model.ingredient.id): @Html.DisplayFor(m => Model.ingredient.id)
+<br/>
+@Html.DisplayNameFor(m => Model.ingredient.name): @Html.DisplayFor(m => Model.ingredient.name)
+<br/>
+@Html.DisplayNameFor(m => Model.ingredient.price): @Html.DisplayFor(m => Model.ingredient.price)
+<br/>
+<br/>
+
+<div class="form-group">
+    <form method="post">
+        @Html.Hidden("id", Model.ingredient.id)
+        <a asp-page="/Ingredients/List" class="btn btn-primary btn-large">Powrót</a>
+        <button class="btn btn btn-primary">Dodaj do koszyka</button>
+    </form>
+</div>

@@ -1,0 +1,18 @@
+@page
+@model DetailsModel
+@{
+    ViewData["Title"] = "Szczegóły kategorii";
+}
+
+<h3>Kategoria</h3>
+@Html.DisplayNameFor(m => Model.category.id): @Html.DisplayFor(m => Model.category.id)
+<br/>
+@Html.DisplayNameFor(m => Model.category.shortName): @Html.DisplayFor(m => Model.category.shortName)
+<br/>
+@Html.DisplayNameFor(m => Model.category.longName): @Html.DisplayFor(m => Model.category.longName)
+<br/>
+<br/>
+
+<div class="form-group">
+    <a asp-page="/Categories/List" class="btn btn-primary btn-large">Powrót</a>
+</div>

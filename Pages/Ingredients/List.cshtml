@@ -1,0 +1,38 @@
+@page
+@model ListModel
+@{
+    ViewData["Title"] = "Lista składników";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<table class="table table-striped centered">
+    <thead>
+        <tr>
+            <th scope="col">@Html.DisplayNameFor(m => Model.ingredients[0].id)</th>
+            <th scope="col">@Html.DisplayNameFor(m => Model.ingredients[0].name)</th>
+            <th scope="col">@Html.DisplayNameFor(m => Model.ingredients[0].price)</th>
+            <th scope="col">Akcja</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var i in Model.ingredients)
+        {
+            <tr>
+                <th scope="row">@Html.DisplayFor(m => i.id)</th>
+                <td>@Html.DisplayFor(m => i.name)</td>
+                <td>@Html.DisplayFor(m => i.price)</td>
+                <td>
+                    <a asp-page="/Ingredients/Details" asp-route-id=@i.id>Szczegóły</a> |
+                    <a asp-page="/Admin/Ingredients/Edit" asp-route-id=@i.id>Edytuj</a> |
+                    <a asp-page="/Admin/Ingredients/Delete" asp-route-id=@i.id>Usuń</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br/>
+
+<div class="form-group">
+    <a asp-page="/Admin/Ingredients/Create" class="btn btn-primary btn-large">Dodaj</a>
+</div>

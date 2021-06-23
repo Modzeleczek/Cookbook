@@ -1,0 +1,38 @@
+@page
+@model ListModel
+@{
+    ViewData["Title"] = "Lista kategorii";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<table class="table table-striped centered">
+    <thead>
+        <tr>
+            <th scope="col">@Html.DisplayNameFor(m => Model.categories[0].id)</th>
+            <th scope="col">@Html.DisplayNameFor(m => Model.categories[0].shortName)</th>
+            <th scope="col">@Html.DisplayNameFor(m => Model.categories[0].longName)</th>
+            <th scope="col">Akcja</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var c in Model.categories)
+        {
+            <tr>
+                <th scope="row">@Html.DisplayFor(m => c.id)</th>
+                <td>@Html.DisplayFor(m => c.shortName)</td>
+                <td>@Html.DisplayFor(m => c.longName)</td>
+                <td>
+                    <a asp-page="/Categories/Details" asp-route-id=@c.id>Szczegóły</a> |
+                    <a asp-page="/Admin/Categories/Edit" asp-route-id=@c.id>Edytuj</a> |
+                    <a asp-page="/Admin/Categories/Delete" asp-route-id=@c.id>Usuń</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br/>
+
+<div class="form-group">
+    <a asp-page="/Admin/Categories/Create" class="btn btn-primary btn-large">Dodaj</a>
+</div>

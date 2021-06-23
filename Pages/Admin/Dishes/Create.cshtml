@@ -1,0 +1,92 @@
+@page
+@model CreateModel
+@{
+    ViewData["Title"] = "Nowa potrawa";
+    string currentPath = (string)ViewData["currentPath"];
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="container">
+    <form class="form-horizontal" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label asp-for="dish.name" class="control-label col-sm-2"></label>
+            <div class="col-sm-6">
+                <input asp-for="dish.name" class="form-control">
+                <span asp-validation-for="dish.name" class="text-red"></span>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label asp-for="dish.recipe" class="control-label col-sm-2"></label>
+            <div class="col-sm-6">
+                <textarea asp-for="dish.recipe" class="form-control"></textarea>
+                <span asp-validation-for="dish.recipe" class="text-red"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="categoryId" class="control-label col-sm-2"></label>
+            <br/>
+            <div class="col-sm-6">
+                <select name="categoryId">
+                    @foreach(var c in Model.categories)
+                    {
+                        if(c.id == Model.categoryId)
+                        {
+                            <option selected value="@c.id">@c.id | @c.shortName</option>
+                        }
+                        else
+                        {
+                            <option value="@c.id">@c.id | @c.shortName</option>
+                        }
+                    }
+                </select>
+            </div>
+        </div>
+
+        <h3>Składniki</h3>
+        <table class="table table-striped centered">
+            <thead>
+                <tr>
+                    <th scope="col">@Html.DisplayNameFor(m => Model.dishIngredients[0].ingredientId)</th>
+                    <th scope="col">@Html.DisplayNameFor(m => Model.dishIngredients[0].Ingredient.name)</th>
+                    <th scope="col">@Html.DisplayNameFor(m => Model.dishIngredients[0].Ingredient.price)</th>
+                    <th scope="col">@Html.DisplayNameFor(m => Model.dishIngredients[0].ingredientAmount)</th>
+                    <th scope="col">Akcja</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var di in Model.dishIngredients)
+                {
+                    <tr>
+                        <th scope="row">@Html.DisplayFor(m => di.ingredientId)</th>
+                        <td>@Html.DisplayFor(m => di.Ingredient.name)</td>
+                        <td>@Html.DisplayFor(m => di.Ingredient.price)</td>
+                        <td>@Html.DisplayFor(m => di.ingredientAmount)</td>
+                        <td>
+                            <a asp-page="/Admin/Dishes/IngredientActions/Delete" asp-route-id=@di.ingredientId asp-route-returnUrl=@currentPath>Usuń</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <br/>
+
+        @Html.Hidden("currentPath", ViewData["currentPath"])
+        <div class="form-group">
+            <button class="btn btn btn-primary" name="button" value="0">Dodaj składnik</button>
+        </div>
+
+        <br>
+        <label asp-for="imageFile"></label>
+        <input asp-for="imageFile">
+        <span asp-validation-for="imageFile" class="text-red"></span>
+        <div class="text-red">@Model.imageError</div><br>
+
+        <div class="form-group">
+            <button class="btn btn btn-primary" name="button" value="1">Anuluj</button>
+            <button class="btn btn btn-primary" name="button" value="2">Zatwierdź</button>
+        </div>
+    </form>
+</div>

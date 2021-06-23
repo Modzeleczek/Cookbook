@@ -1,0 +1,43 @@
+@page
+@model ListModel
+@{
+    ViewData["Title"] = "Lista potraw";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<table class="table table-striped centered">
+    <thead>
+        <tr>
+            <th scope="col">@Html.DisplayNameFor(m => Model.dishes[0].id)</th>
+            <th scope="col">@Html.DisplayNameFor(m => Model.dishes[0].name)</th>
+            <th scope="col">@Html.DisplayNameFor(m => Model.dishes[0].Category)</th>
+            <th scope="col">Obraz</th>
+            <th scope="col">Akcja</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var d in Model.dishes)
+        {
+            <tr>
+                <th scope="row">@Html.DisplayFor(m => d.id)</th>
+                <td >@Html.DisplayFor(m => d.name)</td>
+                <td >@Html.DisplayFor(m => d.Category.shortName)</td>
+                @{
+                    string path = $"/photo/{d.id}.jpg"; @* aby zadziałał middleware, robimy żądanie GET do nieistniejącej ścieżki *@
+                }
+                <td class="image-row"><img src="@path" alt="Nie można pobrać obrazu." height="100"></td>
+                <td>
+                    <a asp-page="/Dishes/Details" asp-route-id=@d.id>Szczegóły</a> |
+                    <a asp-page="/Admin/Dishes/Edit" asp-route-id=@d.id>Edytuj</a> |
+                    <a asp-page="/Admin/Dishes/Delete" asp-route-id=@d.id>Usuń</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br/>
+
+<div class="form-group">
+    <a asp-page="/Admin/Dishes/Create" class="btn btn-primary btn-large">Dodaj</a>
+</div>

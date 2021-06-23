@@ -1,0 +1,32 @@
+@page
+@model EditModel
+@{
+    ViewData["Title"] = "Edycja kategorii";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="container">
+    <form class="form-horizontal" method="post">
+        @Html.Hidden("category.id", Model.category.id)
+        <div class="form-group">
+            <label asp-for="category.shortName" class="control-label col-sm-2"></label>
+            <div class="col-sm-6">
+                <input asp-for="category.shortName" class="form-control">
+                <span asp-validation-for="category.shortName" class="text-red"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="category.longName" class="control-label col-sm-2"></label>
+            <div class="col-sm-6">
+                <input asp-for="category.longName" class="form-control">
+                <span asp-validation-for="category.longName" class="text-red"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <a asp-page="/Categories/List" class="btn btn-primary btn-large">Anuluj</a>
+            <button class="btn btn btn-primary">Zatwierdź</button>
+        </div>
+    </form>
+</div>
+<br/>

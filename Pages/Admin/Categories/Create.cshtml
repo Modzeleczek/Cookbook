@@ -1,0 +1,30 @@
+@page
+@model CreateModel
+@{
+    ViewData["Title"] = "Nowa kategoria";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="container">
+    <form class="form-horizontal" method="post">
+        <div class="form-group">
+            <label asp-for="newCategory.shortName" class="control-label col-sm-2"></label>
+            <div class="col-sm-6">
+                <input asp-for="newCategory.shortName" class="form-control">
+                <span asp-validation-for="newCategory.shortName" class="text-red"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="newCategory.longName" class="control-label col-sm-2"></label>
+            <div class="col-sm-6">
+                <input asp-for="newCategory.longName" class="form-control">
+                <span asp-validation-for="newCategory.longName" class="text-red"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <a asp-page="/Categories/List" class="btn btn-primary btn-large">Anuluj</a>
+            <button class="btn btn btn-primary">Zatwierdź</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,57 @@
+@page
+@model DetailsModel
+@{
+    ViewData["Title"] = "Szczegóły potrawy";
+}
+
+<h3>Potrawa</h3>
+@Html.DisplayNameFor(m => Model.dish.id): @Html.DisplayFor(m => Model.dish.id)
+<br/>
+@Html.DisplayNameFor(m => Model.dish.name): @Html.DisplayFor(m => Model.dish.name)
+<br/>
+
+<h3>Kategoria</h3>
+@Html.DisplayNameFor(m => Model.category.id): @Html.DisplayFor(m => Model.category.id)
+<br/>
+@Html.DisplayNameFor(m => Model.category.shortName): @Html.DisplayFor(m => Model.category.shortName)
+<br/>
+@Html.DisplayNameFor(m => Model.category.longName): @Html.DisplayFor(m => Model.category.longName)
+<br/>
+
+<h3>Składniki</h3>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">@Html.DisplayNameFor(model => Model.dishIngredients.First().ingredientId)</th>
+            <th scope="col">@Html.DisplayNameFor(model => Model.dishIngredients.First().Ingredient.name)</th>
+            <th scope="col">@Html.DisplayNameFor(model => Model.dishIngredients.First().Ingredient.price)</th>
+            <th scope="col">@Html.DisplayNameFor(model => Model.dishIngredients.First().ingredientAmount)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var di in Model.dishIngredients)
+        {
+            <tr>
+                <td>@Html.DisplayFor(m => di.ingredientId)</td>
+                <td>@Html.DisplayFor(m => di.Ingredient.name)</td>
+                <td>@Html.DisplayFor(m => di.Ingredient.price)</td>
+                <td>@Html.DisplayFor(m => di.ingredientAmount)</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br/>
+
+<h3>@Html.DisplayNameFor(m => Model.dish.recipe)</h3>
+@Html.DisplayFor(m => Model.dish.recipe)
+<br/>
+
+<h3>Zdjęcie</h3>
+@{
+    string path = $"/photo/{Model.dish.id}.jpg";
+}
+<img src="@path" alt="Nie można pobrać obrazu." width="30%"><br><br>
+
+<div class="form-group">
+    <a asp-page="/Dishes/List" class="btn btn-primary btn-large">Powrót</a>
+</div>

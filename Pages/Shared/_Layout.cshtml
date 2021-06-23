@@ -1,0 +1,69 @@
+﻿@{
+    string currentPath = (string)ViewData["currentPath"];
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <link rel="icon" href="~/cookbook_icon.png">
+</head>
+<body class="img-bg">
+    <header class="white-bg">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-blue border-bottom box-shadow mb-3">
+            <div class="container navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <ol class="navbar-nav flex-grow-1">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Authentication/Register" asp-route-returnUrl="@currentPath">Rejestracja</a> @* przekazujemy ścieżkę strony (z parametrami), do której należy wrócić po rejestracji *@
+                    </li>
+                    <li class="nav-item">
+                    @* https://forums.asp.net/t/2169734.aspx?How+to+check+if+the+User+is+logged+in+all+ASP+NET+Razor+Pages+
+                    https://stackoverflow.com/questions/59796352/check-if-user-is-logged-on-in-asp-net-core *@
+                    @if(User.Identity.IsAuthenticated == false) // Jeżeli użytkownik nie jest zalogowany
+                    {
+                        // Wyświetlamy link do logowania
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Authentication/Login" asp-route-returnUrl="@currentPath">Logowanie</a>
+                    }
+                    else
+                    {
+                        // Wyświetlamy link do wylogowywania
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Authentication/Logout" asp-route-returnUrl="@currentPath">Wyloguj</a>
+                    }
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Categories/List">Kategorie</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Dishes/List">Potrawy</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Ingredients/List">Składniki</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/ShoppingCart/List">Koszyk</a>
+                    </li>
+                </ol>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container white-bg">
+        <main role="main" class="pb-3 pt-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted white-bg">
+        <div class="container">
+            @ViewData["companyName"]
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,32 @@
+@page
+@model LoginModel
+@{
+    ViewData["Title"] = "Logowanie";
+}
+
+<h2>@ViewData["Title"]</h2>
+<div class="text-red">@Model.errorMessage</div>
+
+<div class="container">
+    <form class="form-horizontal" method="post">
+        @Html.Hidden("returnUrl", Model.returnUrl)
+        <div class="form-group">
+            <label asp-for="user.userName" class="control-label col-sm-2"></label>
+            <div class="col-sm-6">
+                <input asp-for="user.userName" class="form-control">
+                <span asp-validation-for="user.userName" class="text-red"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="user.password" class="control-label col-sm-2"></label>
+            <div class="col-sm-6">
+                <input asp-for="user.password" class="form-control">
+                <span asp-validation-for="user.password" class="text-red"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <a asp-page="@Model.returnUrl" class="btn btn-primary btn-large">Anuluj</a>
+            <button class="btn btn btn-primary">Zatwierdź</button>
+        </div>
+    </form>
+</div>

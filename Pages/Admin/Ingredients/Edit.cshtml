@@ -1,0 +1,32 @@
+@page
+@model EditModel
+@{
+    ViewData["Title"] = "Edycja składnika";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="container">
+    <form class="form-horizontal" method="post">
+        @Html.Hidden("ingredient.id", Model.ingredient.id)
+        <div class="form-group">
+            <label asp-for="ingredient.name" class="control-label col-sm-2"></label>
+            <div class="col-sm-6">
+                <input asp-for="ingredient.name" class="form-control">
+                <span asp-validation-for="ingredient.name" class="text-red"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ingredient.price" class="control-label col-sm-2"></label>
+            <div class="col-sm-6">
+                <input asp-for="ingredient.price" class="form-control">
+                <span asp-validation-for="ingredient.price" class="text-red"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <a asp-page="/Ingredients/List" class="btn btn-primary btn-large">Anuluj</a>
+            <button class="btn btn btn-primary">Zatwierdź</button>
+        </div>
+    </form>
+</div>
+<br/>
