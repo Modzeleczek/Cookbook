@@ -23,8 +23,21 @@ Uwaga:
 Jeżeli przedstawiany projekt okaże się "kopią" innego projektu lub z odpowiedzi na pytania (patrz punkt 17) będzie wynikało, iż nie jest znana techniczna strona implementacji aplikacji, punkty z projektu nie zostaną przyznane.
 
 ## Uwagi przed użyciem
-1. W bazie danych tabele Ingredient ze składnikami, Category z kategoriami potraw i Dish z potrawami są tworzone automatycznie przez ORM Entity Framework Core wykorzystany w modelu code first.
-2. Tabela User przechowująca zarejestrowane konta musi być stworzona ręcznie. W pliku User.sql znajduje się kod używany do stworzenia tabeli User i procedur składowanych używanych do zarządzania tabelą User przez klasę UserSqlDB.
-3. W appsettings.json wstawiamy connection stringa do naszej bazy danych.
-4. W katalogu dish_img przechowywane są obrazy potraw w formacie .jpg przesyłane przez użytkowników.
-5. Aplikacja była testowana z użyciem DBMSa Microsoft SQL Server w wersji 15.0.4138.2-1 amd64.
+W bazie danych tabele Ingredient ze składnikami, Category z kategoriami potraw i Dish z potrawami są tworzone automatycznie przez ORM Entity Framework Core wykorzystany w modelu code first.
+
+W głównym katalogu projektu instalujemy następujące pakiety NuGeta:
+```
+dotnet add package Microsoft.EntityFrameworkCore --version 5.0.6
+dotnet add package Microsoft.EntityFrameworkCore.Relational --version 5.0.6
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 5.0.6
+dotnet add package System.Data.SqlClient --version 4.8.2
+dotnet add package System.Drawing.Common --version 5.0.2
+```
+
+Tabela User przechowująca zarejestrowane konta musi być stworzona ręcznie. W pliku User.sql znajduje się kod używany do stworzenia tabeli User i procedur składowanych używanych do zarządzania tabelą User przez klasę UserSqlDB.
+
+W appsettings.json wstawiamy connection stringa do naszej bazy danych.
+
+W katalogu dish_img przechowywane są obrazy potraw w formacie .jpg przesyłane przez użytkowników.
+
+Aplikacja była testowana z użyciem DBMSa Microsoft SQL Server w wersji 15.0.4138.2-1 amd64.
