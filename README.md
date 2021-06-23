@@ -40,4 +40,4 @@ W appsettings.json wstawiamy connection stringa do naszej bazy danych.
 
 W katalogu dish_img przechowywane są obrazy potraw w formacie .jpg przesyłane przez użytkowników.
 
-Aplikacja była testowana z użyciem DBMSa Microsoft SQL Server w wersji 15.0.4138.2-1 amd64.
+Aplikacja była testowana na Ubuntu z użyciem DBMSa Microsoft SQL Server w wersji 15.0.4138.2-1 amd64.
